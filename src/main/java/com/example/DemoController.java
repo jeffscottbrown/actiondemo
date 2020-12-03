@@ -13,6 +13,6 @@ public class DemoController {
 
     @Get(uri="/hello/{name}", produces = MediaType.TEXT_PLAIN)
     public String greet(String name) {
-        return "Hello There Again " + name;
+        return "Hello There " + name;
     }
 }
