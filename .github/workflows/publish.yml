@@ -30,7 +30,7 @@ jobs:
       - name: Build and push docker image
         uses: eskatos/gradle-command-action@v1
         env:
-          DOCKER_IMAGE: ${{DOCKER_REGISTRY_URL}}/${{DOCKER_ORGANIZATION}}/actiondemo
+          DOCKER_IMAGE: ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_ORGANIZATION }}/actiondemo
         with:
           arguments: check dockerPush --no-daemon
       - name: deploy
