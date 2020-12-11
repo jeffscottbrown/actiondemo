@@ -39,3 +39,4 @@ jobs:
           image: gcr.io/oci-micronaut/actiondemo:latest
           service: actiondemo
           credentials: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          region: us-central
