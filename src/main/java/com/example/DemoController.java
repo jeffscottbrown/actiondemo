@@ -8,7 +8,7 @@ public class DemoController {
 
     @Get(uri="/", produces="text/plain")
     public String index() {
-        return "Example Updated Response";
+        return "Example Updated Response Again";
     }
 
     @Get(uri="/hello/{name}", produces = MediaType.TEXT_PLAIN)
