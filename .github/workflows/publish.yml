@@ -36,7 +36,7 @@ jobs:
       - name: Deploy To GCR
         uses: google-github-actions/deploy-cloudrun@main
         with:
-          image: gcr.io/oci-micronaut/actiondemo:latest
+          image: gcr.io/oci-micronaut/actiondemo
           service: actiondemo
           credentials: ${{ secrets.GCLOUD_SERVICE_KEY }}
           region: us-central1
