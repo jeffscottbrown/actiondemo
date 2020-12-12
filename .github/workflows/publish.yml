@@ -33,13 +33,6 @@ jobs:
           DOCKER_IMAGE: ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_ORGANIZATION }}/${{ secrets.PROJECT_ID }}
         with:
           arguments: check dockerPush --no-daemon
-      - name: Deploy To GCR
-        uses: google-github-actions/deploy-cloudrun@main
-        with:
-          image: gcr.io/oci-micronaut/${{ secrets.PROJECT_ID }}:latest
-          service: ${{ secrets.PROJECT_ID }}
-          credentials: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          region: us-central1
       - name: Setup GCP Service Account
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
