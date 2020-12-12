@@ -30,7 +30,7 @@ jobs:
       - name: Build And Push Docker Image
         uses: eskatos/gradle-command-action@v1
         env:
-          DOCKER_IMAGE: ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_ORGANIZATION }}/${{ secrets.PROJECT_ID }}
+          DOCKER_IMAGE: ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.PROJECT_ORGANIZATION }}/${{ secrets.PROJECT_ID }}
         with:
           arguments: check dockerPush --no-daemon
       - name: Setup GCP Service Account
@@ -44,7 +44,7 @@ jobs:
         run: |
           gcloud run deploy ${{ secrets.PROJECT_ID }} \
           --region us-central1 \
-          --image ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_ORGANIZATION }}/${{ secrets.PROJECT_ID }} \
+          --image ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.PROJECT_ORGANIZATION }}/${{ secrets.PROJECT_ID }} \
           --platform managed \
           --allow-unauthenticated \
-          --project ${{ secrets.DOCKER_ORGANIZATION }}
+          --project ${{ secrets.PROJECT_ORGANIZATION }}
