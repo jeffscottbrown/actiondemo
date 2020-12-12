@@ -40,3 +40,18 @@ jobs:
           service: ${{ secrets.PROJECT_ID }}
           credentials: ${{ secrets.GCLOUD_SERVICE_KEY }}
           region: us-central1
+      - name: Setup GCP Service Account
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: 'latest'
+          service_account_email: ${{ secrets.GCLOUD_SERVICE_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          export_default_credentials: true
+      - name: Deploy To GCR
+        run: |
+          gcloud run deploy ${{ secrets.PROJECT_ID }} \
+          --region us-central1 \
+          --image ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_ORGANIZATION }}/${{ secrets.PROJECT_ID }} \
+          --platform managed \
+          --allow-unauthenticated \
+          --project ${{ secrets.DOCKER_ORGANIZATION }}
