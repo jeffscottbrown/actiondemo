@@ -39,10 +39,8 @@ java {
 }
 
 tasks {
-
-    dockerBuild{
+    dockerBuildNative {
         images = ["${System.env.DOCKER_IMAGE}"]
     }
-
 }
 
