@@ -20,6 +20,8 @@ jobs:
         uses: DeLaGuardo/setup-graalvm@8bbfe44ef9c6f5c07e5af036a1bffd561c037d18
         with:
           graalvm-version: 20.3.0.java11
+      - name: Run Tests
+        run: ./gradlew check --no-daemon
       - name: Install Native Image
         run: gu install native-image
       - name: Docker Login
@@ -33,7 +35,7 @@ jobs:
           TESTCONTAINERS_RYUK_DISABLED: true
           DOCKER_IMAGE: ${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.PROJECT_ORGANIZATION }}/${{ secrets.PROJECT_ID }}
         run: |
-          ./gradlew check dockerPushNative --no-daemon
+          ./gradlew dockerPushNative --no-daemon
       - name: Setup GCP Service Account
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
